@@ -27,6 +27,7 @@ body {
   background-color: #f4f1ec;
   flex-direction: column;
   width: 90%;
+  margin: auto;
 }
 
 /*

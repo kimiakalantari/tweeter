@@ -1,0 +1,47 @@
+.new-tweet {
+  margin: 2em 0;
+}
+
+.new-tweet form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Bungee", sans-serif;
+  margin-top: 0.6em;
+}
+
+.footer-container button {
+  border: none;
+  background-color: #4056a1;
+  color: white;
+}
+
+.footer-container button:hover {
+  transition: transform 0.2s;
+  transform: scale(1.2);
+}
+
+.footer-container button:focus {
+  outline: none;
+}
+
+textarea {
+  margin-top: 5px;
+  border: none;
+  background-color: #f4f1ec;
+  border-bottom: 4px #545149 solid;
+  height: 40px;
+  width: 100%;
+  resize: none;
+  font-weight: bold;
+  color: #545149;
+  overflow: hidden;
+}
+
+textarea:focus {
+  outline: none;
+}
