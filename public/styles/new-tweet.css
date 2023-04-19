@@ -20,15 +20,6 @@
   color: white;
 }
 
-.footer-container button:hover {
-  transition: transform 0.2s;
-  transform: scale(1.2);
-}
-
-.footer-container button:focus {
-  outline: none;
-}
-
 textarea {
   margin-top: 5px;
   border: none;
@@ -42,6 +33,6 @@ textarea {
   overflow: hidden;
 }
 
-textarea:focus {
-  outline: none;
+.counterRed {
+  color: red;
 }
