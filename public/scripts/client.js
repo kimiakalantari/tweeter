@@ -6,7 +6,6 @@
 
 //function to build html for tweets dynamically
 const $createTweetElement = (tweetObj) => {
-  console.log('hi');
   const $tweet = $("<article class='tweet'>");
   //tweet header
   const $header = $("<div class='th-header'>");
@@ -58,33 +57,64 @@ const $renderTweets = function (tweets) {
   });
 };
 
-// Fake data taken from initial-tweets.json
-const $data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
+// // Fake data taken from initial-tweets.json
+// const $data = [
+//   {
+//     "user": {
+//       "name": "Newton",
+//       "avatars": "https://i.imgur.com/73hZDYK.png"
+//       ,
+//       "handle": "@SirIsaac"
+//     },
+//     "content": {
+//       "text": "If I have seen further it is by standing on the shoulders of giants"
+//     },
+//     "created_at": 1461116232227
+//   },
+//   {
+//     "user": {
+//       "name": "Descartes",
+//       "avatars": "https://i.imgur.com/nlhLi3I.png",
+//       "handle": "@rd" },
+//     "content": {
+//       "text": "Je pense , donc je suis"
+//     },
+//     "created_at": 1461113959088
+//   }
+// ]
 
-$renderTweets($data);
+const $loadTweets = () => {
+  $.ajax({
+    url:"/tweets", 
+    method:'GET', 
+  })
+  .done((datatweets) => {
+    $renderTweets(datatweets); 
+  })
+}
+
+$('#new-tweet-form').on('submit', function (event) {
+  event.preventDefault();
+
+  const $tweetText = $(this).children('#tweet-text');
+
+  const formContent = $(this).serialize();
+
+  $.ajax({
+    url: '/tweets',
+    method: 'POST',
+    data: formContent
+  })
+  .done(() => $loadTweets())
+
+  $("#tweet-text").val("");
+  $(this).find("counter").val("140");
+});
+
+$loadTweets();
+
+
+// $renderTweets($data);
 
 
 // Test / driver code (temporary)
