@@ -3,7 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-
+$(document).ready(function() {
 //function to build html for tweets dynamically
 const $createTweetElement = (tweetObj) => {
   const $tweet = $("<article class='tweet'>");
@@ -30,7 +30,9 @@ const $createTweetElement = (tweetObj) => {
   const $footer = $('<footer>');
   //tweet footer children
   
-  
+  const $timeDelta = timeago().format(tweetObj.created_at);
+  console.log($timeDelta);
+  const $timeStamp = $('<p>').text($timeDelta);
   const $footerD2 = $("<div class='icons'>");
   const $flag = $("<i class='far fa-flag' id='flag'>");
   const $retweet = $("<i class='fas fa-retweet' id='retweet'>");
@@ -40,6 +42,7 @@ const $createTweetElement = (tweetObj) => {
   $footerD2.append($heart);
   //append footer children to footer
   $footer.append($footerD2);
+  $footer.append($timeStamp);
   //add all of the children to the tweet div
   $tweet.append($header);
   $tweet.append($contentContainer);
@@ -120,3 +123,4 @@ $loadTweets();
 // Test / driver code (temporary)
 // $(".tweet-history").append($createTweetElement($tweetData));// to add it to the page so we can make sure it's got all the right elements, classes, etc.
 
+});
