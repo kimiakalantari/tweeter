@@ -36,3 +36,15 @@ textarea {
 .counterRed {
   color: red;
 }
+
+.error {
+  background-color: #e8630a;
+  opacity: 0.75;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 900;
+  border: 6px #fbcb0a;
+  border-radius: 10px;
+  font-size: 2rem;
+  height: 2.5rem;
+}

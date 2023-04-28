@@ -3,7 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function() {
+
 //function to build html for tweets dynamically
 const $createTweetElement = (tweetObj) => {
   const $tweet = $("<article class='tweet'>");
@@ -70,6 +70,26 @@ const $loadTweets = () => {
   })
 }
 
+//function to add custom error message
+const appendError = (message) => {
+  $('.new-tweet').prepend(
+    $("<span class='error'>")
+      .text('⚠️ ' + message + ' ⚠️')
+      .slideDown()
+      .delay(3500)
+      .hide(500)
+  );
+};
+
+//removes errors to keep multiple errors from popping up with repeated error inducing clicks
+const removeError = () => {
+  $('.error').remove();
+};
+
+$(document).ready(function() {
+
+$loadTweets();
+
 $('#new-tweet-form').on('submit', function (event) {
   event.preventDefault();
 
@@ -77,14 +97,13 @@ $('#new-tweet-form').on('submit', function (event) {
 
   const formContent = $(this).serialize();
 
-  if (!$tweetText.val()) {
-    alert("Your Tweet is Empty!");
-    return false;
-  }
-  if ($tweetText.val().length > 140) {
-    alert("Your Tweet is too Long!")
-    return false;
-  }
+  //handle errors
+  removeError();
+  if ($('#tweet-text').val() === '' || null) {
+     appendError('You cannot post a blank tweet');
+  } else if ($('#tweet-text').val().length > 140) {
+     appendError('Your tweet is too long!');
+  } else {
 
   $.ajax({
     url: '/tweets',
@@ -95,9 +114,11 @@ $('#new-tweet-form').on('submit', function (event) {
 
   $("#tweet-text").val("");
   let count = $(this).find(".counter").val("140");
+}
+
 });
 
-$loadTweets();
+
 
 
 // $renderTweets($data);
