@@ -77,6 +77,15 @@ $('#new-tweet-form').on('submit', function (event) {
 
   const formContent = $(this).serialize();
 
+  if (!$tweetText.val()) {
+    alert("Your Tweet is Empty!");
+    return false;
+  }
+  if ($tweetText.val().length > 140) {
+    alert("Your Tweet is too Long!")
+    return false;
+  }
+
   $.ajax({
     url: '/tweets',
     method: 'POST',
