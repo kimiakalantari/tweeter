@@ -1,0 +1,17 @@
+/*Media methods*/
+@media only screen and (min-width: 1024px){
+  .container {
+    flex-direction: row;
+    margin-top: 120px;
+    justify-content: space-around;
+  }
+
+  main {
+    width: 42%;
+    margin: 48px 40px 0 0;
+  }
+
+  header {
+    width: 40%;
+  }
+}
