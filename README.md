@@ -29,9 +29,8 @@ I was given the starter code for this project from Lighthouse Labs and then I bu
 
 - Express
 - Node 5.10.x or above
-- body-parser
-- chance
-- md-5
+- Body-parser
+- Chance
 
 
 ## Contact
